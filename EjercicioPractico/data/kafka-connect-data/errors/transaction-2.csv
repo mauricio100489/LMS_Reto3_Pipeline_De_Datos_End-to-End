@@ -1,0 +1,2 @@
+transaction_id,account_id,transaction_date,transaction_time,amount,merchant_name,merchant_category,location,card_present,fraud_type,risk_score
+TXN011,ACC10234,2025-10-15,14:23:45,2500.00,Electronics Express,Electronics,New York NY USA,false,card_not_present,95

@@ -1,0 +1,11 @@
+transaction_id,account_id,transaction_date,transaction_time,amount,merchant_name,merchant_category,location,card_present,fraud_type,risk_score
+TXN001,ACC10234,2025-10-15,14:23:45,2500.00,Electronics Express,Electronics,New York NY USA,false,card_not_present,95
+TXN002,ACC10567,2025-10-16,03:12:18,500.00,Online Casino Games,Gambling,Malta,false,unauthorized_transaction,98
+TXN003,ACC10892,2025-10-16,09:45:32,1200.00,Luxury Watches Ltd,Jewelry,London UK,false,stolen_card,92
+TXN004,ACC11023,2025-10-17,23:56:12,3500.00,Premium Electronics,Electronics,Lagos Nigeria,false,account_takeover,99
+TXN005,ACC10234,2025-10-17,14:28:03,2800.00,Tech Gadgets Pro,Electronics,Tokyo Japan,false,duplicate_location,94
+TXN006,ACC11456,2025-10-18,02:34:56,750.00,International Wire Transfer,Financial Services,Moscow Russia,false,wire_fraud,97
+TXN007,ACC10678,2025-10-18,11:15:44,4200.00,Crypto Exchange Max,Cryptocurrency,Hong Kong,false,phishing_scam,96
+TXN008,ACC11789,2025-10-18,18:42:21,1500.00,Designer Handbags,Fashion,Paris France,false,counterfeit_merchant,91
+TXN009,ACC10234,2025-10-19,04:15:33,5000.00,ATM Withdrawal,Cash,Mumbai India,true,skimming_attack,99
+TXN010,ACC12001,2025-10-19,16:23:47,800.00,Subscription Services Pro,Online Services,Singapore,false,recurring_fraud,100

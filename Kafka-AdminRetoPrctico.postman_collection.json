@@ -1,0 +1,1122 @@
+{
+	"info": {
+		"_postman_id": "eb16405b-8651-4097-b5e0-e11ace816cc6",
+		"name": "Kafka-Admin Reto Práctico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "300738"
+	},
+	"item": [
+		{
+			"name": "Kafka Connect",
+			"item": [
+				{
+					"name": "Connectors",
+					"item": [
+						{
+							"name": "List connector plugins",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connector-plugins",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connector-plugins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List connectors (name only)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get specific connector status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name/status",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name",
+										"status"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "sink-sftp-json"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get specific connector config info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name/config",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name",
+										"config"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "sink-sftp-json"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update specific connector",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"connector.class\": \"com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector\",\r\n    \"tasks.max\": \"1\",\r\n    \"topic\": \"t-spooldir-csv-demo\",\r\n    \"input.file.pattern\": \"mycsv-.*.csv\",\r\n    \"input.path\": \"/data/inputs\",\r\n    \"error.path\": \"/data/errors\",\r\n    \"finished.path\": \"/data/processed\",\r\n    \"csv.first.row.as.header\": true,\r\n    \"schema.generation.enabled\": \"true\",\r\n    \"empty.poll.wait.ms\": 5000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name/config",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name",
+										"config"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "source-spooldir-csv"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restart specific connector",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name/restart",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name",
+										"restart"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "sink-sftp-json"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pause specific connector",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name/pause",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name",
+										"pause"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "sink-sftp-json"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resume specific connector",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name/resume",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name",
+										"resume"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "sink-sftp-json"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete specific connector",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors/:connector-name",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors",
+										":connector-name"
+									],
+									"variable": [
+										{
+											"key": "connector-name",
+											"value": "sink-sftp-json"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Setup source connectors",
+					"item": [
+						{
+							"name": "Spooldir - CSV",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"source-spooldir-csv\",\r\n    \"config\": {\r\n        \"connector.class\": \"com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector\",\r\n        \"topic\": \"topic-spooldir-csv\",\r\n        \"input.file.pattern\": \"employee-.*.csv\",\r\n        \"input.path\": \"/data/inputs\",\r\n        \"error.path\": \"/data/errors\",\r\n        \"finished.path\": \"/data/processed\",\r\n        \"schema.generation.enabled\": true,\r\n        \"csv.first.row.as.header\": true,\r\n        \"empty.poll.wait.ms\": 10000\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PostgreSQL - Person Address",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"source-person-address-proxy\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.confluent.connect.jdbc.JdbcSourceConnector\",\r\n        \"topic.prefix\": \"topic-person-address-proxy\",\r\n        \"connection.url\": \"jdbc:postgresql://{{localhost-ip}}:5432/postgres\",\r\n        \"connection.user\": \"postgres\",\r\n        \"connection.password\": \"postgres\",\r\n        \"mode\": \"bulk\",\r\n        \"poll.interval.ms\": 7200000,\r\n        \"query\": \"SELECT p.*, pa.address_id, pa.address, pa.city, pa.postal_code FROM people p JOIN people_addresses pa ON p.person_id = pa.person_id ORDER BY p.person_id\",\r\n        \"transforms\": \"createKey,extractInt\",\r\n        \"transforms.createKey.type\": \"org.apache.kafka.connect.transforms.ValueToKey\",\r\n        \"transforms.createKey.fields\": \"address_id\",\r\n        \"transforms.extractInt.type\": \"org.apache.kafka.connect.transforms.ExtractField$Key\",\r\n        \"transforms.extractInt.field\": \"address_id\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Setup sink connectors",
+					"item": [
+						{
+							"name": "PostgreSQL - CSV",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"sink-postgresql-csv\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.confluent.connect.jdbc.JdbcSinkConnector\",\r\n        \"topics\": \"topic-spooldir-csv\",\r\n        \"confluent.topic.bootstrap.servers\": \"{{localhost-ip}}:29092\",\r\n        \"connection.url\": \"jdbc:postgresql://{{localhost-ip}}:5432/postgres\",\r\n        \"connection.user\": \"postgres\",\r\n        \"connection.password\": \"postgres\",\r\n        \"table.name.format\": \"tlb_kafka_employees\",\r\n        \"auto.create\": true,\r\n        \"auto.evolve\": true,\r\n        \"pk.mode\": \"record_value\",\r\n        \"pk.fields\": \"employee_id\",\r\n        \"insert.mode\": \"upsert\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RabbitMQ-Sink",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"rabbitmq-source-connector\",\r\n  \"config\": {\r\n    \"connector.class\": \"com.datamountaineer.streamreactor.connect.rabbitmq.source.RabbitMQSourceConnector\",\r\n    \"tasks.max\": \"1\",\r\n    \r\n    \"kafka.topic\": \"rabbitmq.topic.name\",\r\n    \"rabbitmq.host\": \"localhost\",\r\n    \"rabbitmq.port\": \"5672\",\r\n    \"rabbitmq.username\": \"guest\",\r\n    \"rabbitmq.password\": \"guest\",\r\n    \r\n    \"rabbitmq.queue\": \"mi_queue_en_rabbit\",\r\n    \"rabbitmq.virtual.host\": \"/\",\r\n    \r\n    \"rabbitmq.routing.key\": \"#\",\r\n    \"rabbitmq.exchange\": \"mi_exchange\",\r\n    \"rabbitmq.exchange.type\": \"topic\",\r\n\r\n    \"rabbitmq.automatic.recovery.enabled\": \"true\",\r\n    \"rabbitmq.prefetch.count\": \"500\",\r\n    \"rabbitmq.heartbeat.interval\": \"60\",\r\n\r\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n    \"value.converter.schemas.enable\": \"false\",\r\n    \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SFTP --> JSON output",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"sink-sftp-json\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.confluent.connect.sftp.SftpSinkConnector\",\r\n        \"topics\": \"topic-spooldir-csv\",\r\n        \"confluent.topic.bootstrap.servers\": \"{{localhost-ip}}:29092\",\r\n        \"format.class\": \"io.confluent.connect.sftp.sink.format.json.JsonFormat\",\r\n        \"storage.class\": \"io.confluent.connect.sftp.sink.storage.SftpSinkStorage\",\r\n        \"flush.size\": 1000,\r\n        \"rotate.interval.ms\": 10000,\r\n        \"sftp.host\": \"{{localhost-ip}}\",\r\n        \"sftp.port\": \"22\",\r\n        \"sftp.username\": \"foo\",\r\n        \"sftp.password\": \"pass\",\r\n        \"sftp.working.dir\": \"/upload\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaConnectUrl}}/connectors",
+									"host": [
+										"{{kafkaConnectUrl}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Kafka ksqlDB RetoPractico",
+			"item": [
+				{
+					"name": "Basic Data",
+					"item": [
+						{
+							"name": "Basic Data 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"myBoolean\": {{$randomBoolean}},\n    \"myString\": \"{{$randomCatchPhrase}}\",\n    \"myAnotherString\": \"{{$randomCatchPhrase}}\",\n    \"myInteger\": {{$randomInt}},\n    \"myLong\": \"{{$randomInt}}{{$randomInt}}\",\n    \"myFloat\": \"{{$randomInt}}.{{$randomInt}}\",\n    \"myDouble\": \"{{$randomInt}}{{$randomInt}}.{{$randomInt}}{{$randomInt}}\",\n    \"myBigDecimal\": \"{{$randomInt}}{{$randomInt}}.{{$randomInt}}{{$randomInt}}{{$randomInt}}\"\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/one",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"one"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Basic Data 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"myDate_Year\", _.random(2020, 2030));\r",
+											"pm.environment.set(\"myDate_Month\", _.random(1, 12));\r",
+											"pm.environment.set(\"myDate_Date\", _.random(1, 28));\r",
+											"\r",
+											"pm.environment.set(\"myTime_Hour\", _.random(0, 23));\r",
+											"pm.environment.set(\"myTime_Minute\", _.random(0, 59));\r",
+											"pm.environment.set(\"myTime_Second\", _.random(0, 59));\r",
+											"\r",
+											"pm.environment.set(\"myTimestamp_Year\", _.random(2020, 2030));\r",
+											"pm.environment.set(\"myTimestamp_Month\", _.random(1, 12));\r",
+											"pm.environment.set(\"myTimestamp_Date\", _.random(1, 28));\r",
+											"pm.environment.set(\"myTimestamp_Hour\", _.random(0, 23));\r",
+											"pm.environment.set(\"myTimestamp_Minute\", _.random(0, 59));\r",
+											"pm.environment.set(\"myTimestamp_Second\", _.random(0, 59));\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"myDate\": {\n        \"year\": {{myDate_Year}},\n        \"month\": {{myDate_Month}},\n        \"date\": {{myDate_Date}}\n    },\n    \"myTime\": {\n        \"hour\": {{myTime_Hour}},\n        \"minute\": {{myTime_Minute}},\n        \"second\": {{myTime_Second}}\n    },\n    \"myTimestamp\": {\n        \"year\": {{myTimestamp_Year}},\n        \"month\": {{myTimestamp_Month}},\n        \"date\": {{myTimestamp_Date}},\n        \"hour\": {{myTimestamp_Hour}},\n        \"minute\": {{myTimestamp_Minute}},\n        \"second\": {{myTimestamp_Second}}\n    }\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/two",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"two"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Basic Data 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"myDate_Year\", _.random(2020, 2030));\r",
+											"pm.environment.set(\"myDate_Month\", _.random(1, 12));\r",
+											"pm.environment.set(\"myDate_Date\", _.random(1, 28));\r",
+											"\r",
+											"pm.environment.set(\"myTime_Hour\", _.random(0, 23));\r",
+											"pm.environment.set(\"myTime_Minute\", _.random(0, 59));\r",
+											"pm.environment.set(\"myTime_Second\", _.random(0, 59));\r",
+											"\r",
+											"pm.environment.set(\"myDateTime_Year\", _.random(2020, 2030));\r",
+											"pm.environment.set(\"myDateTime_Month\", _.random(1, 12));\r",
+											"pm.environment.set(\"myDateTime_Date\", _.random(1, 28));\r",
+											"pm.environment.set(\"myDateTime_Hour\", _.random(0, 23));\r",
+											"pm.environment.set(\"myDateTime_Minute\", _.random(0, 59));\r",
+											"pm.environment.set(\"myDateTime_Second\", _.random(0, 59));\r",
+											"\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Year\", _.random(2020, 2030));\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Month\", _.random(1, 12));\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Date\", _.random(1, 28));\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Hour\", _.random(0, 23));\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Minute\", _.random(0, 59));\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Second\", _.random(0, 59));\r",
+											"pm.environment.set(\"myDateTimeWithTimezone_Timezone\", \"+\" + _.random(0, 12));"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"myDate\": {\n        \"year\": {{myDate_Year}},\n        \"month\": {{myDate_Month}},\n        \"date\": {{myDate_Date}}\n    },\n    \"myTime\": {\n        \"hour\": {{myTime_Hour}},\n        \"minute\": {{myTime_Minute}},\n        \"second\": {{myTime_Second}}\n    },\n    \"myDateTime\": {\n        \"year\": {{myDateTime_Year}},\n        \"month\": {{myDateTime_Month}},\n        \"date\": {{myDateTime_Date}},\n        \"hour\": {{myDateTime_Hour}},\n        \"minute\": {{myDateTime_Minute}},\n        \"second\": {{myDateTime_Second}}\n    },\n    \"myDateTimeWithTimezone\": {\n        \"year\": {{myDateTimeWithTimezone_Year}},\n        \"month\": {{myDateTimeWithTimezone_Month}},\n        \"date\": {{myDateTimeWithTimezone_Date}},\n        \"hour\": {{myDateTimeWithTimezone_Hour}},\n        \"minute\": {{myDateTimeWithTimezone_Minute}},\n        \"second\": {{myDateTimeWithTimezone_Second}},\n        \"timezone\": \"{{myDateTimeWithTimezone_Timezone}}\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/three",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"three"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Basic Data 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"arrayElementsCount\", _.random(2, 10));\r",
+											"pm.environment.set(\"listElementsCount\", _.random(2, 10));\r",
+											"pm.environment.set(\"setElementsCount\", _.random(2, 10));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"arrayElementsCount\": {{arrayElementsCount}},\n  \"listElementsCount\": {{listElementsCount}},\n  \"setElementsCount\": {{setElementsCount}}\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/four",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"four"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Basic Data 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"alphaElementsCount\", _.random(2, 10));\r",
+											"pm.environment.set(\"betaElementsCount\", _.random(2, 10));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"alphaElementsCount\": {{alphaElementsCount}},\n  \"betaElementsCount\": {{betaElementsCount}}\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/five",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"five"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Basic Data Person",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"yearOfBirth\", _.random(1980, 2000));\r",
+											"pm.environment.set(\"monthOfBirth\", _.random(10, 12));\r",
+											"pm.environment.set(\"dateOfBirth\", _.random(10, 28));\r",
+											"\r",
+											"pm.environment.set(\"yearPassportExpiry\", _.random(2026, 2036));\r",
+											"pm.environment.set(\"monthPassportExpiry\", _.random(10, 12));\r",
+											"pm.environment.set(\"datePassportExpiry\", _.random(10, 28));"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"birthDate\": \"{{yearOfBirth}}-{{monthOfBirth}}-{{dateOfBirth}}\",\n    \"contacts\": {\n        \"email\": \"{{$randomEmail}}\",\n        \"phoneWork\": \"{{$randomPhoneNumber}}\",\n        \"phoneHome\": \"{{$randomPhoneNumber}}\"\n    },\n    \"passport\": {\n        \"number\": \"{{$randomBankAccount}}{{$randomInt}}\",\n        \"expirationDate\": \"{{yearPassportExpiry}}-{{monthPassportExpiry}}-{{datePassportExpiry}}\"\n    },\n    \"addresses\": [\n        {\n            \"streetAddress\": \"{{$randomStreetAddress}}\",\n            \"country\": \"{{$randomCountry}}\",\n            \"location\": {\n                \"latitude\": {{$randomLatitude}},\n                \"longitude\": {{$randomLongitude}}\n            }\n        },\n        {\n            \"streetAddress\": \"{{$randomStreetAddress}}\",\n            \"country\": \"{{$randomCountry}}\",\n            \"location\": {\n                \"latitude\": {{$randomLatitude}},\n                \"longitude\": {{$randomLongitude}}\n            }\n        },\n        {\n            \"streetAddress\": \"{{$randomStreetAddress}}\",\n            \"country\": \"{{$randomCountry}}\",\n            \"location\": {\n                \"latitude\": {{$randomLatitude}},\n                \"longitude\": {{$randomLongitude}}\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/person",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"person"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Stream & Table Key",
+					"item": [
+						{
+							"name": "Data Country",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"countryName\": \"{{$randomCountry}}\",\n  \"currencyCode\": \"{{$randomCurrencyCode}}\",\n  \"population\": {{$randomInt}}\n}"
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbSampleUrl}}/api/basic-data/country",
+									"host": [
+										"{{kafkaKsqldbSampleUrl}}"
+									],
+									"path": [
+										"api",
+										"basic-data",
+										"country"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pull Query",
+					"item": [
+						{
+							"name": "Pull query to stream 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ksql\": \"SELECT `MYBOOLEAN`, `MYDOUBLE`, `MYSTRING` FROM `s-basic-data-one`;\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbUrl}}/query",
+									"host": [
+										"{{kafkaKsqldbUrl}}"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pull query to stream 1 Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ksql\": \"SELECT `MYBOOLEAN`, `MYDOUBLE`, `MYSTRING` FROM `s-basic-data-one`;\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbUrl}}/query",
+									"host": [
+										"{{kafkaKsqldbUrl}}"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pull query to stream 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ksql\": \"SELECT * FROM `s-basic-data-person`;\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbUrl}}/query",
+									"host": [
+										"{{kafkaKsqldbUrl}}"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pull query to table",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ksql\": \"SELECT * FROM `tbl-` WHERE `campo_id` = 'datosxyz';\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbUrl}}/query",
+									"host": [
+										"{{kafkaKsqldbUrl}}"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Schema Registry",
+					"item": [
+						{
+							"name": "Avro01",
+							"item": [
+								{
+									"name": "Create topic sc-avro01",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"topic_name\": \"sc-avro01\",\r\n    \"partitions_count\": 1,\r\n    \"replication_factor\": 1,\r\n    \"configs\": [\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{restProxyUrl}}/v3/clusters/:clusterId/topics",
+											"host": [
+												"{{restProxyUrl}}"
+											],
+											"path": [
+												"v3",
+												"clusters",
+												":clusterId",
+												"topics"
+											],
+											"variable": [
+												{
+													"key": "clusterId",
+													"value": "{{kafkaClusterId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create subject avro01",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"schema\": \"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"Avro01\\\",\\\"namespace\\\":\\\"com.course.avro.data\\\",\\\"doc\\\":\\\"Sampledefaultvalue\\\",\\\"fields\\\":[{\\\"name\\\":\\\"fullName\\\",\\\"type\\\":{\\\"type\\\":\\\"string\\\",\\\"avro.java.string\\\":\\\"String\\\"}},{\\\"name\\\":\\\"maritalStatus\\\",\\\"type\\\":{\\\"type\\\":\\\"string\\\",\\\"avro.java.string\\\":\\\"String\\\"},\\\"default\\\":\\\"UNKNOWN\\\"},{\\\"name\\\":\\\"active\\\",\\\"type\\\":\\\"boolean\\\",\\\"default\\\":false}]}\",\r\n    \"schemaType\": \"AVRO\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{schemaRegistryUrl}}/subjects/:subject/versions",
+											"host": [
+												"{{schemaRegistryUrl}}"
+											],
+											"path": [
+												"subjects",
+												":subject",
+												"versions"
+											],
+											"variable": [
+												{
+													"key": "subject",
+													"value": "sc-avro01-value"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Writing Avro Schema",
+							"item": [
+								{
+									"name": "List subjects",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{schemaRegistryUrl}}/subjects",
+											"host": [
+												"{{schemaRegistryUrl}}"
+											],
+											"path": [
+												"subjects"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "List schemas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{schemaRegistryUrl}}/schemas",
+											"host": [
+												"{{schemaRegistryUrl}}"
+											],
+											"path": [
+												"schemas"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Java Client",
+					"item": [
+						{
+							"name": "Insert dummy data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ksql\": \"INSERT INTO `s-java-client` (`fieldOne`, `fieldTwo`, `fieldThree`) VALUES ('{{$randomWords}}', {{$randomInt}}, {{$randomBoolean}});\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kafkaKsqldbUrl}}/ksql",
+									"host": [
+										"{{kafkaKsqldbUrl}}"
+									],
+									"path": [
+										"ksql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Server Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{kafkaKsqldbUrl}}/info",
+							"host": [
+								"{{kafkaKsqldbUrl}}"
+							],
+							"path": [
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "inventorySimulationItem",
+			"value": "LthkSample"
+		},
+		{
+			"key": "identifier",
+			"value": "1"
+		},
+		{
+			"key": "kafkaClusterId",
+			"value": "101"
+		},
+		{
+			"key": "kafkaTopicName",
+			"value": "topic-lthk-api"
+		},
+		{
+			"key": "kafkaMsOrderUrl",
+			"value": "http://localhost:9001"
+		},
+		{
+			"key": "kafkaConnectUrl",
+			"value": "http://localhost:8083"
+		},
+		{
+			"key": "kafkaConnectSchemalessUrl",
+			"value": "http://localhost:18083"
+		},
+		{
+			"key": "schemaRegistryUrl",
+			"value": "http://localhost:8081"
+		},
+		{
+			"key": "restProxyUrl",
+			"value": "http://localhost:8082"
+		},
+		{
+			"key": "kafkaKsqldbUrl",
+			"value": "http://localhost:8088"
+		},
+		{
+			"key": "kafkaKsqldbSampleUrl",
+			"value": "http://localhost:9002"
+		},
+		{
+			"key": "schemaId",
+			"value": "1"
+		},
+		{
+			"key": "subject",
+			"value": "topic-lthk-api-value"
+		},
+		{
+			"key": "subjectVersionId",
+			"value": "1"
+		},
+		{
+			"key": "consumerGroupId",
+			"value": "topic-lthk-kfk-proxy-consumer-grp"
+		},
+		{
+			"key": "consumerName",
+			"value": "topic-lthk-api"
+		},
+		{
+			"key": "localhost-ip",
+			"value": "192.168.1.4"
+		},
+		{
+			"key": "elasticsearchUsername",
+			"value": "elastic"
+		},
+		{
+			"key": "elasticsearchPassword",
+			"value": "changeme"
+		},
+		{
+			"key": "elasticsearchUrl",
+			"value": "http://192.168.10.10:9200"
+		}
+	]
+}
