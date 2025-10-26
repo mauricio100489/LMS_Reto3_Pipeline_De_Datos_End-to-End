@@ -7,7 +7,7 @@ Implementar un pipeline de datos end-to-end utilizando el ecosistema de Apache K
 # Tareas
 
 1) Ingesta de Datos (50% del reto)
-a) Configurar un Source Connector que lea un archivo CSV con transacciones financieras
+1.1) Configurar un Source Connector que lea un archivo CSV con transacciones financieras
 b) Publicar los datos en el tópico trx-fraud-transactions en formato JSON
 c) Configurar un Sink Connector para persistir los datos en PostgreSQL
 
