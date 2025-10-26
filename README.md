@@ -12,14 +12,14 @@ Implementar un pipeline de datos end-to-end utilizando el ecosistema de Apache K
 - Configurar un Sink Connector para persistir los datos en PostgreSQL
 
 2) Procesamiento de Streaming (50% del reto)
-a. Crear streams en ksqlDB sobre el tópico de transacciones
-b. Implementar consultas continuas para filtrado, agregación y enriquecimiento
-c. Detectar transacciones sospechosas basadas en patrones de fraude
+- Crear streams en ksqlDB sobre el tópico de transacciones
+- Implementar consultas continuas para filtrado, agregación y enriquecimiento
+- Detectar transacciones sospechosas basadas en patrones de fraude
 
 # Componentes del Flujo
-a) Archivo CSV: Contiene transacciones financieras con campos como account_id, amount, timestamp, location, etc.
-b) Spooler CSV Source Connector: Lee archivos CSV desde un directorio monitoreado
-c) Kafka Topic: trx-fraud-transactions - almacena las transacciones en formato JSON
-d) ksqlDB: Procesa las transacciones en tiempo real para detectar fraude
-e) PostgreSQL Sink Connector: Almacena las transacciones procesadas en base de datos
-f) PostgreSQL: Base de datos para almacenamiento persistente
+- Archivo CSV: Contiene transacciones financieras con campos como account_id, amount, timestamp, location, etc.
+- Spooler CSV Source Connector: Lee archivos CSV desde un directorio monitoreado
+- Kafka Topic: trx-fraud-transactions - almacena las transacciones en formato JSON
+- ksqlDB: Procesa las transacciones en tiempo real para detectar fraude
+- PostgreSQL Sink Connector: Almacena las transacciones procesadas en base de datos
+- PostgreSQL: Base de datos para almacenamiento persistente
